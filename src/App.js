@@ -1,25 +1,52 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useParams
+} from "react-router-dom";
+import Sidebar from './components/sidebar';
 
+function Routings() {
+  return (
+  <>
+  <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Sidebar />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/topics" element={<Topics />} />          
+        </Routes>
+      </BrowserRouter>
+      </>
+  );
+}
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routings />      
     </div>
   );
+}
+function Home() {
+  return <h2>Home</h2>;
+}
+
+function About() {
+  return <h2>About</h2>;
+}
+
+function Topics() {
+
+  return (
+    <div>
+      <h2>Topics</h2>
+    </div>
+  );
+}
+
+function Topic() {
+  let { topicId } = useParams();
+  return <h3>Requested topic ID: {topicId}</h3>;
 }
 
 export default App;
