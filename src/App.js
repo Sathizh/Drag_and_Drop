@@ -14,7 +14,7 @@ function Routings() {
         <Routes>
           <Route path="/" element={<Sidebar />} >
               <Route path="" element={<Dashboard />} />
-          </Route>         
+          </Route>
         </Routes>
       </BrowserRouter>
       </>

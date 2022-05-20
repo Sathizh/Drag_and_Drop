@@ -1,6 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Droppable } from 'react-beautiful-dnd'
+import { DragDropContext } from 'react-beautiful-dnd'
+import { Draggable } from 'react-beautiful-dnd'
 
 function Dashboard() {
+    const [open, setOpen] = React.useState([]);
+    const [contacted, setContacted] = React.useState([]);
+    const [written, setWritten] = React.useState([]);
+
+    useEffect(() => {
+        fetch('https://randomuser.me/api?results=10')
+            .then(res => res.json())
+            .then(data => {
+                console.log("data", data)
+                setOpen(data.results);
+            })
+        fetch('https://randomuser.me/api?results=5')
+            .then(res => res.json())
+            .then(data => {
+                console.log("data", data)
+                setContacted(data.results);
+            })
+        fetch('https://randomuser.me/api?results=7')
+            .then(res => res.json())
+            .then(data => {
+                console.log("data", data)
+                setWritten(data.results);
+            })
+    }, []);
+
+
+    function handleOnDragEnd(result) {
+        if (!result.destination) return;
+
+        const items = Array.from(open);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+        setOpen(items);
+    }
     return (
         <div className='flex flex-col h-screen'>
             <div className="h-16 w-full bg-white flex justify-between items-center px-5 border-b">
@@ -12,14 +49,14 @@ function Dashboard() {
                 <div className='flex items-center gap-x-3 text-black'>
                     <div className='gap-x-3 flex items-center'>
                         <ion-icon name="search-outline"></ion-icon>
-                        <input type="search" name="Search" id="" placeholder='search' className='border-b focus:outline-none' />
+                        <input type="search" name="Search" id="" placeholder='Search' className='border-b focus:outline-none' />
                     </div>
                     <button className='p-1 px-2 bg-indigo-900 text-white capitalize rounded-md text-sm flex items-center'><ion-icon name="add-outline" ></ion-icon> Add New</button>
-                    <span class="relative inline-block">
+                    <span className="relative inline-block">
                         <ion-icon name="gift-outline"
                             class="w-6 h-6  hover:bg-gray-100/20 rounded-full fill-current p-2">
                         </ion-icon>
-                        <span class="absolute top-2 right-1 inline-flex  px-1.5 py-1 text-xs font-bold leading-none transform translate-x-1/2 -translate-y-1/2 text-white bg-red-600 rounded-full">2</span>
+                        <span className="absolute top-2 right-1 inline-flex  px-1.5 py-1 text-xs font-bold leading-none transform translate-x-1/2 -translate-y-1/2 text-white bg-red-600 rounded-full">2</span>
                     </span>
                     <div className="w-10 h-10 rounded-full bg-yellow-200 flex justify-center items-center font-semibold text-xl">S</div>
                 </div>
@@ -45,14 +82,151 @@ function Dashboard() {
 
                 </div>
             </div>
-            <div className="w-full h-full bg-gray-200 p-5 shadow-md">
-                <div className="font-bold flex items-center gap-x-2">All candidates - <span className='font-normal'>Active (48) <ion-icon name="chevron-down-outline"></ion-icon></span></div>
-                <div className="w-80 h-12 my-5 bg-white border-l-4 pl-2  border-indigo-500 font-bold flex items-center">Open  - 11</div>
-                <div className="w-80 h-40 my-5 bg-white relative">
-                    <div className='text-indigo-600 px-4 pt-4 font-bold '>Sathish M</div>
-                    <div className='text-sm truncate px-4'>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</div>
-                    <div className="w-full h-10 bg-gray-50 absolute b-0 l-0">s</div>
+            {/* main area */}
+            <div className="h-full bg-gray-200 p-5 shadow-md overflow-auto scrollbar-Custom">
+                <div className="w-full flex justify-between">
+                    <div className="font-bold flex items-center gap-x-2">All candidates - <span className='font-normal'>
+                        <select className='bg-transparent px-2'>
+                            <option value="Active ">Active (48)</option>
+                            <option value="Active ">Active </option>
+                        </select>
+                    </span></div>
+                    <div className="flex items-center gap-x-2 font-normal">Sort By - <span className='font-bold'>
+                        <select className='bg-transparent px-2'>
+                            <option value="Last Update">Last Update</option>
+                            <option value="Last Update">Last Update</option>
+                        </select>
+                    </span></div>
+                    <div className="font-bold flex items-center gap-x-2">
+                        <ion-icon name="list-outline" class="w-6 h-6"></ion-icon>
+                        <ion-icon name="funnel-outline" class="w-6 h-6"></ion-icon>
+                        <ion-icon name="cloud-upload-outline" class="w-6 h-6"></ion-icon>
+                    </div>
                 </div>
+                <div className="flex gap-x-10  overflow-auto scrollbar-Custom">
+                    {/* col -1 */}
+                    <div>
+                        {/* card */}
+                        {/* title */}
+                        <div className="w-80 h-12 my-5 bg-white border-l-4 pl-2  border-indigo-500 font-bold flex items-center shadow-sm rounded">Open  - 11</div>
+                        <DragDropContext onDragEnd={handleOnDragEnd}>
+                            <Droppable droppableId='open' >
+                                {(provided, snapshot) => (
+                                    <ul {...provided.droppableProps} className="open" ref={provided.innerRef}>
+                                        {open.map((value , index) => {
+                                            return (
+                                                <Draggable key={value.cell} draggableId={value.cell} index={index}>
+                                                    {(provided, snapshot) => (
+
+                                                    <li className="w-80 h-32 my-5 bg-white flex flex-col justify-between rounded" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                        <div>
+                                                            <div className='text-indigo-600 px-4 pt-4 font-bold '>{value.name.first}</div>
+                                                            <div className='text-sm truncate px-4'>{value.email}</div>
+                                                        </div>
+                                                        <div className="w-full h-10 bg-gray-50 rounded flex items-center justify-between px-2">
+                                                            <div className='flex gap-0.5'>
+                                                                {[...Array(Math.floor(Math.random() * 5) + 1)].map((elementInArray, index) => (
+                                                                    <ion-icon name="star-outline" key={index}></ion-icon>
+                                                                )
+                                                                )}
+                                                            </div>
+                                                            <div><ion-icon name="ellipsis-vertical-outline"></ion-icon></div>
+                                                        </div>
+                                                    </li>
+                                                    )}
+                                                </Draggable>
+                                            )
+                                        }
+                                        )}
+                                        {provided.placeholder}
+                                    </ul>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                    </div>
+                    {/* col -2 */}
+                    <div>
+                        {/* title */}
+                        <div className="w-80 h-12 my-5 bg-white border-l-4 pl-2  border-green-500 font-bold flex items-center shadow-sm rounded">Open  - 11</div>
+                        {/* card */}
+                        <DragDropContext>
+                            <Droppable droppableId='open'>
+                                {(provided, snapshot) => (
+                                    <ul {...provided.droppableProps} className="open" ref={provided.innerRef}>
+                                        {contacted.map((value , index) => {
+                                            return (
+                                                <Draggable key={value.cell} draggableId={value.cell} index={index}>
+                                                    {(provided, snapshot) => (
+
+                                                    <li className="w-80 h-32 my-5 bg-white flex flex-col justify-between rounded" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                        <div>
+                                                            <div className='text-indigo-600 px-4 pt-4 font-bold '>{value.name.first}</div>
+                                                            <div className='text-sm truncate px-4'>{value.email}</div>
+                                                        </div>
+                                                        <div className="w-full h-10 bg-gray-50 rounded flex items-center justify-between px-2">
+                                                            <div className='flex gap-0.5'>
+                                                                {[...Array(Math.floor(Math.random() * 5) + 1)].map((elementInArray, index) => (
+                                                                    <ion-icon name="star-outline" key={index}></ion-icon>
+                                                                )
+                                                                )}
+                                                            </div>
+                                                            <div><ion-icon name="ellipsis-vertical-outline"></ion-icon></div>
+                                                        </div>
+                                                    </li>
+                                                    )}
+                                                </Draggable>
+                                            )
+                                        }
+                                        )}
+                                        {provided.placeholder}
+                                    </ul>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                    </div>
+                    {/* col -3 */}
+                    <div>
+                        {/* title */}
+                        <div className="w-80 h-12 my-5 bg-white border-l-4 pl-2  border-red-500 font-bold flex items-center shadow-sm rounded">Open  - 11</div>
+                        {/* card */}
+                        <DragDropContext>
+                            <Droppable droppableId='open'>
+                                {(provided, snapshot) => (
+                                    <ul {...provided.droppableProps} className="open" ref={provided.innerRef}>
+                                        {written.map((value , index) => {
+                                            return (
+                                                <Draggable key={value.cell} draggableId={value.cell} index={index}>
+                                                    {(provided, snapshot) => (
+
+                                                    <li className="w-80 h-32 my-5 bg-white flex flex-col justify-between rounded" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                        <div>
+                                                            <div className='text-indigo-600 px-4 pt-4 font-bold '>{value.name.first}</div>
+                                                            <div className='text-sm truncate px-4'>{value.email}</div>
+                                                        </div>
+                                                        <div className="w-full h-10 bg-gray-50 rounded flex items-center justify-between px-2">
+                                                            <div className='flex gap-0.5'>
+                                                                {[...Array(Math.floor(Math.random() * 5) + 1)].map((elementInArray, index) => (
+                                                                    <ion-icon name="star-outline" key={index}></ion-icon>
+                                                                )
+                                                                )}
+                                                            </div>
+                                                            <div><ion-icon name="ellipsis-vertical-outline"></ion-icon></div>
+                                                        </div>
+                                                    </li>
+                                                    )}
+                                                </Draggable>
+                                            )
+                                        }
+                                        )}
+                                        {provided.placeholder}
+                                    </ul>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     )

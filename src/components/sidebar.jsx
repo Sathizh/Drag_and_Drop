@@ -1,22 +1,21 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import TitleBar from "./TitleBar";
 
 
 const Sidebar = () => {
 
     const [open, setOpen] = useState(true);
     const TopMenus = [
-        { title: "users", icon: "speedometer-outline", url: "users" },
-        { title: "events", icon: "file-tray-full-outline", url: "events" },
-        { title: "Cancellation Requests ", icon: "bag-add-outline", url: "cancellationRequest" },
-        { title: "Transactions", icon: "people-outline", url: "transactions" },
-        { title: "Reported Users", icon: "settings-outline", url: "reportedUsers" },
+        { title: "users", icon: "speedometer-outline", url: "#" },
+        { title: "events", icon: "file-tray-full-outline", url: "#" },
+        { title: "Cancellation Requests ", icon: "bag-add-outline", url: "#" },
+        { title: "Transactions", icon: "people-outline", url: "#" },
+        { title: "Reported Users", icon: "settings-outline", url: "#" },
     ];
     const BottomMenus = [
-        { title: "Help", icon: "help-circle-outline", url: "reportedUsers" },
-        { title: "Message", icon: "chatbox-ellipses-outline", url: "reportedUsers" },
-        { title: "Apps", icon: "apps-outline", url: "reportedUsers" },
+        { title: "Help", icon: "help-circle-outline", url: "#" },
+        { title: "Message", icon: "chatbox-ellipses-outline", url: "#" },
+        { title: "Apps", icon: "apps-outline", url: "#" },
     ];
     const style = {
         navLink: `flex rounded-lg p-2 py-3 cursor-pointer hover:text-black text-sm items-center gap-x-4 hover:bg-purple-500 border-purple-500 font-semibold ${!open && 'justify-center'} `,
@@ -39,9 +38,9 @@ const Sidebar = () => {
                 <div className="px-2 mt-10 h-5/6 flex flex-col justify-between gap-1  ">
                     <div>
                         {TopMenus.map((Menu, index) => (
-                            <NavLink to={`/s/${Menu.url}`}
+                            <NavLink to={`${Menu.url}`}
                                 key={index}
-                                className={(navData) => navData.isActive ? style.active : style.navLink}
+                                className={ style.navLink}
                             >
                                 <ion-icon name={Menu.icon} class="h-6 w-6"></ion-icon>
                                 <div className="flex flex-row flex-none gap-1">
@@ -54,9 +53,9 @@ const Sidebar = () => {
                     </div>
                     <div>
                         {BottomMenus.map((Menu, index) => (
-                            <NavLink to={`/s/${Menu.url}`}
+                            <NavLink to={`${Menu.url}`}
                                 key={index}
-                                className={(navData) => navData.isActive ? style.active : style.navLink}
+                                className={style.navLink}
                             >
                                 <ion-icon name={Menu.icon} class="h-6 w-6"></ion-icon>
                                 <div className="flex flex-row flex-none gap-1">
@@ -69,7 +68,7 @@ const Sidebar = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex-1 bg-gray-100">
+            <div className="flex-1 bg-gray-100 overflow-x-hidden">
                 <div className="w-full h-full">
                     <Outlet />
                 </div>
