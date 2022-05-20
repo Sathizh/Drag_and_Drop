@@ -108,7 +108,7 @@ function Dashboard() {
                     <div>
                         {/* card */}
                         {/* title */}
-                        <div className="w-80 h-12 my-5 bg-white border-l-4 pl-2  border-indigo-500 font-bold flex items-center shadow-sm rounded">Open  - 11</div>
+                        <div className="w-80 h-12 my-5 bg-white border-l-4 pl-2  border-indigo-500 font-bold flex items-center shadow-sm rounded">Open  - {open.length}</div>
                         <DragDropContext onDragEnd={handleOnDragEnd}>
                             <Droppable droppableId='open' >
                                 {(provided, snapshot) => (
@@ -147,7 +147,7 @@ function Dashboard() {
                     {/* col -2 */}
                     <div>
                         {/* title */}
-                        <div className="w-80 h-12 my-5 bg-white border-l-4 pl-2  border-green-500 font-bold flex items-center shadow-sm rounded">Open  - 11</div>
+                        <div className="w-80 h-12 my-5 bg-white border-l-4 pl-2  border-green-500 font-bold flex items-center shadow-sm rounded">Contacted  - {contacted.length}</div>
                         {/* card */}
                         <DragDropContext>
                             <Droppable droppableId='open'>
@@ -187,7 +187,7 @@ function Dashboard() {
                     {/* col -3 */}
                     <div>
                         {/* title */}
-                        <div className="w-80 h-12 my-5 bg-white border-l-4 pl-2  border-red-500 font-bold flex items-center shadow-sm rounded">Open  - 11</div>
+                        <div className="w-80 h-12 my-5 bg-white border-l-4 pl-2  border-red-500 font-bold flex items-center shadow-sm rounded">Written  - {written.length}</div>
                         {/* card */}
                         <DragDropContext>
                             <Droppable droppableId='open'>
