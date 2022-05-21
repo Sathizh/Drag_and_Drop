@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Sidebar = () => {
 
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const TopMenus = [
         { title: "Performance", icon: "speedometer-outline", url: "#" },
         { title: "Requests", icon: "file-tray-full-outline", url: "#" },
