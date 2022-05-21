@@ -178,8 +178,8 @@ function Dashboard() {
                                                                                 </div>
                                                                                 <div className="w-full h-10 bg-gray-50 rounded flex items-center justify-between px-2">
                                                                                     <div className='flex gap-0.5'>
-                                                                                        {[...Array(Math.floor(Math.random() * 5) + 1)].map((index) => (
-                                                                                            <ion-icon name="star-outline" key={index}></ion-icon>
+                                                                                        {[...Array(Math.floor(Math.random() * 5) + 1)].map((indexKey) => (
+                                                                                            <ion-icon name="star-outline" key={indexKey}></ion-icon>
                                                                                         )
                                                                                         )}
                                                                                     </div>
