@@ -75,7 +75,7 @@ const Sidebar = () => {
                     </div>
                 </div>
             </div>
-            <div class="lg:hidden flex justify-center items-center flex-col h-screen text-lg text-center text-white capitalize font-bold bg-gradient-to-t from-indigo-500 to-red-500">Please Try this in Desktop for Better Experiance... <span class="text-3xl">😥</span></div>
+            <div class="lg:hidden flex justify-center items-center flex-col h-screen w-full text-lg text-center text-white capitalize font-bold bg-gradient-to-t from-indigo-500 to-red-500">Please Try this in Desktop for Better Experiance... <span class="text-3xl">😥</span></div>
         </div>
     );
 };
