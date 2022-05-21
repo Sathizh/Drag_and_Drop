@@ -6,11 +6,11 @@ const Sidebar = () => {
 
     const [open, setOpen] = useState(true);
     const TopMenus = [
-        { title: "users", icon: "speedometer-outline", url: "#" },
-        { title: "events", icon: "file-tray-full-outline", url: "#" },
-        { title: "Cancellation Requests ", icon: "bag-add-outline", url: "#" },
-        { title: "Transactions", icon: "people-outline", url: "#" },
-        { title: "Reported Users", icon: "settings-outline", url: "#" },
+        { title: "Performance", icon: "speedometer-outline", url: "#" },
+        { title: "Requests", icon: "file-tray-full-outline", url: "#" },
+        { title: "Bucket List", icon: "bag-add-outline", url: "#" },
+        { title: "Candidates", icon: "people-outline", url: "#" },
+        { title: "Settings", icon: "settings-outline", url: "#" },
     ];
     const BottomMenus = [
         { title: "Help", icon: "help-circle-outline", url: "#" },

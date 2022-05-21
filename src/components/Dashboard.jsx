@@ -141,7 +141,7 @@ function Dashboard() {
 
                 </div>
             </div>
-            <div className="w-full h-16 flex justify-between bg-gray-200 px-5">
+            <div className="w-full h-10 flex items-center justify-between bg-gray-200 px-5">
                 <div className="font-bold flex items-center gap-x-2">All candidates - <span className='font-normal'>
                     <select className='bg-transparent px-2'>
                         <option value="Active ">Active (48)</option>
@@ -169,7 +169,7 @@ function Dashboard() {
                             {_.map(round, (data, key) => {
                                 return (
                                     <div className="div" key={key}>
-                                        <div className={`w-80 h-12 my-5 bg-white border-l-4 pl-2 font-bold flex items-center shadow-sm rounded`} style={{borderColor:data.color}}>{data.title}</div>
+                                        <div className={`w-80 h-12 my-5 bg-white border-l-4 pl-2 font-bold flex items-center shadow-sm rounded`} style={{ borderColor: data.color }}>{data.title}</div>
                                         <Droppable droppableId={key} >
                                             {(provided, snapshot) => {
                                                 return (
