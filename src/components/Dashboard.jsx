@@ -3,23 +3,8 @@ import React, { useState, useEffect } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { Draggable } from 'react-beautiful-dnd'
-import { v4 } from "uuid";
-const item = {
-    id: v4(),
-    name: "Clean the house"
-}
-
-const item2 = {
-    id: v4(),
-    name: "Wash the car"
-}
 
 function Dashboard() {
-    const [open, setOpen] = React.useState([]);
-    const [contacted, setContacted] = React.useState([]);
-    const [written, setWritten] = React.useState([]);
-
-
 
     const [round, setRound] = useState({
         "open": {
@@ -163,7 +148,6 @@ function Dashboard() {
             {/* main area */}
             <div className="h-full bg-gray-200 p-5 shadow-md overflow-auto scrollbar-Custom">
                 <div className="h-full overflow-auto scrollbar-Custom">
-                    {/* col -1 */}
                     <div className='h-full flex gap-x-10'>
                         <DragDropContext onDragEnd={handleDragEnd}>
                             {_.map(round, (data, key) => {
@@ -184,7 +168,6 @@ function Dashboard() {
                                                                     {(provided, snapshot) => {
                                                                         return (
                                                                             <li className="w-80 h-32 my-2 bg-white flex flex-col justify-between rounded" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-
                                                                                 <div>
                                                                                     <div className='text-indigo-600 px-4 pt-4 font-bold '>{el.name.first}</div>
                                                                                     <div className='text-sm truncate px-4'>{el.email}</div>
