@@ -161,7 +161,7 @@ function Dashboard() {
                                                     <div
                                                         ref={provided.innerRef}
                                                         {...provided.droppableProps}
-                                                        className='w-full bg-indigo-100 p-2 rounded-md flex flex-col min-h-fit'
+                                                        className='w-full bg-indigo-100 p-2 rounded-md flex flex-col h-fit min-h-[10rem]'
                                                     >
                                                         {data.items.filter((value) => {
                                                             if (searchName === '') {
