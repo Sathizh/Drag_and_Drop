@@ -169,6 +169,7 @@ function Dashboard() {
                                                             } else if (value.name.first.toLowerCase().includes(searchName.toLowerCase())) {
                                                                 return value
                                                             }
+                                                            return null
                                                         }).map((el, index) => {
                                                             return (
                                                                 <Draggable key={el.login.uuid} draggableId={el.login.uuid} index={index}>
