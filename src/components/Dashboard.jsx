@@ -19,7 +19,7 @@ function Dashboard() {
         },
         "written": {
             title: "Written",
-            color: "red",
+            color: "orange",
             items: []
         },
         "selected": {
