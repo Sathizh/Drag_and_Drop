@@ -186,7 +186,7 @@ function Dashboard() {
                                                                                         )
                                                                                         )}
                                                                                     </div>
-                                                                                    <div className='gap-x-2 flex items-center'><div className='w-7 h-7 rounded-full bg-green-100 flex items-center justify-center font-semibold text-green-900'>{el.name.first[0]}</div><ion-icon name="ellipsis-vertical-outline"></ion-icon></div>
+                                                                                    <div className='gap-x-2 flex items-center'><img src={el.picture.medium} alt='' className='w-7 h-7 rounded-full bg-green-100 ' /><ion-icon name="ellipsis-vertical-outline"></ion-icon></div>
                                                                                 </div>
                                                                             </li>
                                                                         )
