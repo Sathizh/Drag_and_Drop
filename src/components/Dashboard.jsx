@@ -161,9 +161,7 @@ function Dashboard() {
                                                         className='w-full bg-indigo-100 p-2 rounded-md flex flex-col h-fit min-h-[10rem]'
                                                     >
                                                         {data.items.filter((value) => {
-                                                            if (searchName === '') {
-                                                                return value
-                                                            } else if (value.name.first.toLowerCase().includes(searchName.toLowerCase())) {
+                                                            if (searchName === '' || value.name.first.toLowerCase().includes(searchName.toLowerCase())) {
                                                                 return value
                                                             }
                                                             return null
