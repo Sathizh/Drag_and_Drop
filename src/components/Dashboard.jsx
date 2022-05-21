@@ -94,7 +94,7 @@ function Dashboard() {
                 <div className='flex items-center gap-x-3 text-black'>
                     <div className='gap-x-3 flex items-center'>
                         <ion-icon name="search-outline"></ion-icon>
-                        <input type="search" name="Search" id="" placeholder='Search' className='border-b focus:outline-none' onChange={(e) => { setSearchName(e.target.value) }} />
+                        <input type="search" name="Search" id="" placeholder='Search The Name' className='border-b focus:outline-none' onChange={(e) => { setSearchName(e.target.value) }} />
                     </div>
                     <button className='p-1 px-2 bg-indigo-900 text-white capitalize rounded-md text-sm flex items-center'><ion-icon name="add-outline" ></ion-icon> Add New</button>
                     <span className="relative inline-block">
@@ -177,7 +177,8 @@ function Dashboard() {
                                                                             <li className="w-80 h-32 my-2 bg-white flex flex-none flex-col justify-between rounded" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                                                                 <div>
                                                                                     <div className='text-indigo-600 px-4 pt-4 font-bold '>{el.name.first}</div>
-                                                                                    <div className='text-sm truncate px-4'>{el.email}</div>
+                                                                                    <div className='text-sm truncate px-4 font-semibold'>{el.email}</div>
+                                                                                    <div className='text-sm truncate px-4 '>{el.location.city}</div>
                                                                                 </div>
                                                                                 <div className="w-full h-10 bg-gray-50 rounded flex items-center justify-between px-2">
                                                                                     <div className='flex gap-0.5'>
