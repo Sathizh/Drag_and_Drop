@@ -168,9 +168,9 @@ function Dashboard() {
                                                         }).map((el, index) => {
                                                             return (
                                                                 <Draggable key={el.login.uuid} draggableId={el.login.uuid} index={index}>
-                                                                    {(provided) => {
+                                                                    {(dragableProvided) => {
                                                                         return (
-                                                                            <li className="w-80 h-32 my-2 bg-white flex flex-none flex-col justify-between rounded" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                                            <li className="w-80 h-32 my-2 bg-white flex flex-none flex-col justify-between rounded" {...dragableProvided.draggableProps} {...dragableProvided.dragHandleProps} ref={dragableProvided.innerRef}>
                                                                                 <div>
                                                                                     <div className='text-indigo-600 px-4 pt-4 font-bold '>{el.name.first}</div>
                                                                                     <div className='text-sm truncate px-4 font-semibold'>{el.email}</div>
