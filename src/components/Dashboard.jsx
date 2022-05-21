@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import React, { useState, useEffect } from 'react'
-import { Droppable } from 'react-beautiful-dnd'
-import { DragDropContext } from 'react-beautiful-dnd'
-import { Draggable } from 'react-beautiful-dnd'
+import { Droppable, DragDropContext, Draggable } from 'react-beautiful-dnd'
 
 function Dashboard() {
 
