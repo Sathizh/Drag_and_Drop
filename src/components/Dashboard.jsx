@@ -160,14 +160,14 @@ function Dashboard() {
                                                     <div
                                                         ref={provided.innerRef}
                                                         {...provided.droppableProps}
-                                                        className='w-full bg-indigo-100 p-2 rounded-md flex flex-col'
+                                                        className='w-full bg-indigo-100 p-2 rounded-md flex flex-col min-h-fit'
                                                     >
                                                         {data.items.map((el, index) => {
                                                             return (
                                                                 <Draggable key={el.login.uuid} draggableId={el.login.uuid} index={index}>
                                                                     {(provided, snapshot) => {
                                                                         return (
-                                                                            <li className="w-80 h-32 my-2 bg-white flex flex-col justify-between rounded" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                                            <li className="w-80 h-32 my-2 bg-white flex flex-none flex-col justify-between rounded" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                                                                 <div>
                                                                                     <div className='text-indigo-600 px-4 pt-4 font-bold '>{el.name.first}</div>
                                                                                     <div className='text-sm truncate px-4'>{el.email}</div>
