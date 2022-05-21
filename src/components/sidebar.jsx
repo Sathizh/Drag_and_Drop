@@ -23,7 +23,7 @@ const Sidebar = () => {
     }
 
     return (
-        <div className="flex">
+        <div className="flex w-full">
             <div className={` ${open ? "lg:w-60 md:w-52" : "lg:w-20 md:w-16 w-16"} bg-indigo-900 text-white h-screen pt-6 relative duration-300 shadow-md `}>
                 <div className={`absolute cursor-pointer -right-3 inset-y-1/2 h-6 w-6  flex items-center justify-center bg-white text-black hover:bg-purple-500 hover:text-black rounded-full  ${!open && "rotate-180"} shadow-md`}
                     onClick={() => setOpen(!open)}>
