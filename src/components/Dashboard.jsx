@@ -76,7 +76,6 @@ function Dashboard() {
             // Remove from previous items array
             prev[source.droppableId].items.splice(source.index, 1)
 
-
             // Adding to new items array location
             prev[destination.droppableId].items.splice(destination.index, 0, itemCopy)
 
@@ -156,7 +155,7 @@ function Dashboard() {
                                     <div className="div" key={key}>
                                         <div className={`w-80 h-12 my-5 bg-white border-l-4 pl-2 font-bold flex items-center shadow-sm rounded`} style={{ borderColor: data.color }}>{data.title} - {data.items.length}</div>
                                         <Droppable droppableId={key} >
-                                            {(provided, snapshot) => {
+                                            {(provided) => {
                                                 return (
                                                     <div
                                                         ref={provided.innerRef}
@@ -173,7 +172,7 @@ function Dashboard() {
                                                         }).map((el, index) => {
                                                             return (
                                                                 <Draggable key={el.login.uuid} draggableId={el.login.uuid} index={index}>
-                                                                    {(provided, snapshot) => {
+                                                                    {(provided) => {
                                                                         return (
                                                                             <li className="w-80 h-32 my-2 bg-white flex flex-none flex-col justify-between rounded" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                                                                 <div>
@@ -183,7 +182,7 @@ function Dashboard() {
                                                                                 </div>
                                                                                 <div className="w-full h-10 bg-gray-50 rounded flex items-center justify-between px-2">
                                                                                     <div className='flex gap-0.5'>
-                                                                                        {[...Array(Math.floor(Math.random() * 5) + 1)].map((elementInArray, index) => (
+                                                                                        {[...Array(Math.floor(Math.random() * 5) + 1)].map((index) => (
                                                                                             <ion-icon name="star-outline" key={index}></ion-icon>
                                                                                         )
                                                                                         )}
